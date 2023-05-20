@@ -1,0 +1,14 @@
+{
+    "name": "05.modulo_externo",
+    "version": "1.0.0",
+    "description": "Estudo Input",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Diego Maciel <dcunhamaciel@gmail.com>",
+    "license": "ISC",
+    "dependencies": {
+        "inquirer": "^8.1.2"
+    }
+}
