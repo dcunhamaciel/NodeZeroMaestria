@@ -24,6 +24,14 @@ function operation() {
 
             if (action === 'Criar Conta') {
                 createAccount()
+            } else if (action === 'Consultar Saldo') {
+                //
+            } else if (action === 'Depositar') {
+                //
+            } else if (action === 'Sacar') {
+                //
+            } else if (action === 'Sair') {
+                closeProgram()
             }
         })
         .catch((error) => console.log(error))
@@ -66,4 +74,9 @@ function buildAccount() {
             operation()
         })
         .catch((error) => console.log(error))
+}
+
+function closeProgram() {
+    console.log(chalk.bgBlue.black('Obrigado por usar o Accounts!'))
+    process.exit()
 }
