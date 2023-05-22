@@ -29,7 +29,7 @@ function operation() {
             } else if (action === 'Depositar') {
                 deposit()
             } else if (action === 'Sacar') {
-                //
+                withdraw()
             } else if (action === 'Sair') {
                 closeProgram()
             }
@@ -126,11 +126,42 @@ function deposit() {
                     const amount = answer.amount
 
                     addAmount(accountName, amount)
-                    operation()
                 })
                 .catch((error) => console.log(error))
         })
         .catch((error) => console.log(error))
+}
+
+function withdraw() {
+    inquirer
+        .prompt([
+            {
+                name: 'accountName',
+                message: 'Qual o nome da sua conta?'
+            }
+        ])
+        .then((answer) => {
+            const accountName = answer.accountName
+
+            if (!checkAccount(accountName)) {
+                return withdraw()
+            }
+
+            inquirer
+                .prompt([
+                    {
+                        name: 'amount',
+                        message: 'Quanto você deseja sacar?'
+                    }
+                ])
+                .then((answer) => {
+                    const amount = answer.amount
+
+                    removeAmount(accountName, amount)                    
+                })
+                .catch((error) => console.log(error))
+        })
+        .catch((error) => console.log(error))        
 }
 
 function addAmount(accountName, amount) {
@@ -146,6 +177,30 @@ function addAmount(accountName, amount) {
     fs.writeFileSync(`accounts/${accountName}.json`, JSON.stringify(accountData), (error) => console.log(error))
 
     console.log(chalk.green(`Foi depositado o valor de R$ ${amount} na sua conta!`))
+
+    operation()
+}
+
+function removeAmount(accountName, amount) {
+    if (!amount) {
+        console.log(chalk.bgRed.black('Ocorreu um erro, tente novamente mais tarde!'))
+        return withdraw()
+    }
+    
+    const accountData = getAccount(accountName)
+
+    if (accountData.balance < parseFloat(amount)) {
+        console.log(chalk.bgRed.black('Valor indisponível para saque.'))
+        return withdraw()
+    }
+
+    accountData.balance -= parseFloat(amount);
+
+    fs.writeFileSync(`accounts/${accountName}.json`, JSON.stringify(accountData), (error) => console.log(error))
+
+    console.log(chalk.green(`Foi sacado o valor de R$ ${amount} na sua conta!`))
+
+    operation()
 }
 
 function checkAccount(accountName) {
