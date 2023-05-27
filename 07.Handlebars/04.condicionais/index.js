@@ -19,7 +19,9 @@ app.get('/', (request, response) => {
 
     const auth = true
 
-    response.render('home', { user: user, auth })
+    const approved = false
+
+    response.render('home', { user: user, auth, approved })
 })
 
 app.listen(3000, () => {
