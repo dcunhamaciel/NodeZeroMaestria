@@ -1,0 +1,23 @@
+{
+    "name": "08.Sequelize",
+    "version": "1.0.0",
+    "description": "Sequelize",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "nodemon ./index.js localhost 3000"
+    },
+    "keywords": [],
+    "author": "Diego Maciel",
+    "license": "ISC",
+    "devDependencies": {
+        "nodemon": "^2.0.22"
+    },
+    "dependencies": {
+        "express": "^4.18.2",
+        "express-handlebars": "^7.0.7",
+        "pg": "^8.11.0",
+        "pg-hstore": "^2.3.4",
+        "sequelize": "^6.32.0"
+    }
+}
