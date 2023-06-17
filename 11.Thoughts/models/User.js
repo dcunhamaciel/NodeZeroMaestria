@@ -12,7 +12,7 @@ const User = db.define('User', {
         required: true
     },
     password: {
-        type: DataTypes.BOOLEAN,
+        type: DataTypes.STRING,
         required: true
     }
 })

@@ -1,4 +1,5 @@
 const bcrypt = require('bcryptjs')
+const { UnknownConstraintError } = require('sequelize')
 
 const User = require('../models/User')
 
@@ -22,7 +23,37 @@ class AuthController {
             return
         }
 
-        //
+        const checkIfUserExists = await User.findOne({ where: { email: email }})
+
+        if (checkIfUserExists) {
+            request.flash('message', 'O e-mail já está em uso!')
+            response.render('auth/register')
+
+            return
+        }
+
+        const salt = bcrypt.genSaltSync(10)
+        const hashedPassword = bcrypt.hashSync(password, salt)
+
+        const user = {
+            name,
+            email,
+            password: hashedPassword
+        }
+
+        try {
+            const createdUser = await User.create(user)
+
+            request.flash('message', 'Cadastro realizado com sucesso!')
+
+            request.session.userId = createdUser.id
+
+            request.session.save(() => {
+                response.redirect('/')
+            })
+        } catch(error) {
+            console.log(error)
+        }
     }
 }
 
