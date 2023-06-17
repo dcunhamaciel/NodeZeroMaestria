@@ -9,6 +9,12 @@ class AuthController {
         response.render('auth/login')
     }
 
+    static logout(request, response) {
+        request.session.destroy()
+        
+        response.redirect('/login')
+    }
+
     static register(request, response) {
         response.render('auth/register')
     }
