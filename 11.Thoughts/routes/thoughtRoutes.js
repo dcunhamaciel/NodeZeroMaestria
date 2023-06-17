@@ -1,8 +1,8 @@
 const express = require('express')
 const router = express.Router()
 
-const ThoughtConotroller = require('../controllers/ThoughtConotroller')
+const ThoughtController = require('../controllers/ThoughtController')
 
-router.get('/', ThoughtConotroller.showThoughts)
+router.get('/', ThoughtController.showThoughts)
 
 module.exports = router

@@ -9,9 +9,10 @@ const conn = require('./db/conn')
 const Thought = require('./models/Thought')
 const User = require('./models/User')
 
-const ThoughtConotroller = require('./controllers/ThoughtConotroller')
+const ThoughtController = require('./controllers/ThoughtController')
 
 const thoughtRoutes = require('./routes/thoughtRoutes')
+const authRoutes = require('./routes/authRoutes')
 
 const app = express()
 
@@ -56,8 +57,9 @@ app.use((request, response, next) => {
 })
 
 app.use('/tought', thoughtRoutes)
+app.use('/', authRoutes)
 
-app.get('/', ThoughtConotroller.showThoughts)
+app.get('/', ThoughtController.showThoughts)
 
 conn
     .sync()
