@@ -10,6 +10,10 @@ class ThoughtController {
     static async dashboard(request, response) {
         response.render('thoughts/dashboard')
     }
+
+    static createThought(request, response) {
+        response.render('thoughts/create')
+    }
 }
 
 module.exports = ThoughtController
