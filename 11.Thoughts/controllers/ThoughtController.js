@@ -49,6 +49,23 @@ class ThoughtController {
             console.log(error)
         }
     }
+    
+    static async removeThought(request, response) {
+        const id = request.body.id
+        const userid = request.session.userid
+        
+        try {
+            await Thought.destroy({ where: { id: id, UserId: userid }})
+
+            request.flash('message', 'Pensamento excluído com sucesso!')
+
+            request.session.save(() => {
+                response.redirect('/thought/dashboard')
+            })
+        } catch(error) {
+            console.log(error)
+        }
+    }
 }
 
 module.exports = ThoughtController
