@@ -52,6 +52,35 @@ class ThoughtController {
         }
     }
     
+    static async updateThought(request, response) {
+        const id = request.params.id
+
+        const thought = await Thought.findOne({ raw: true, where: { id: id }})
+
+        response.render('thoughts/edit', { thought })
+    }
+
+    static async updateThoughtPost(request, response) {
+        const id = request.body.id
+
+        const thought = {
+            title: request.body.title
+        }
+        
+        console.log('teste', id, thought)
+        try {
+            await Thought.update(thought, { where: { id: id }})
+
+            request.flash('message', 'Pensamento atualizado com sucesso!')
+
+            request.session.save(() => {
+                response.redirect('/thought/dashboard')
+            })
+        } catch(error) {
+            console.log(error)
+        }        
+    }
+
     static async removeThought(request, response) {
         const id = request.body.id
         const userid = request.session.userid
