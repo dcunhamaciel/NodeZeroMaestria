@@ -32,7 +32,7 @@ class AuthController {
 
         request.flash('message', 'Autenticação realizada com sucesso!')
 
-        request.session.userId = user.id
+        request.session.userid = user.id
 
         request.session.save(() => {
             response.redirect('/')
@@ -82,7 +82,7 @@ class AuthController {
 
             request.flash('message', 'Cadastro realizado com sucesso!')
 
-            request.session.userId = createdUser.id
+            request.session.userid = createdUser.id
 
             request.session.save(() => {
                 response.redirect('/')

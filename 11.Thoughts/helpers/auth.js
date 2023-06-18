@@ -1,7 +1,7 @@
 const checkAuth = function(request, response, next) {
-    const userId = request.session.userId
+    const userid = request.session.userid
 
-    if (!userId) {
+    if (!userid) {
         response.redirect('/login')
     }
 
