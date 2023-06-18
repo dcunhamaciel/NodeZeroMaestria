@@ -24,7 +24,9 @@ class ThoughtController {
 
         const thoughts = user.Thoughts.map((result) => result.dataValues)
 
-        response.render('thoughts/dashboard', { thoughts })
+        const emptyThoughts = thoughts.length === 0
+
+        response.render('thoughts/dashboard', { thoughts, emptyThoughts })
     }
 
     static createThought(request, response) {

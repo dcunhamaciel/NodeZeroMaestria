@@ -176,6 +176,10 @@ form input[type='submit']:hover,
     margin: 0 0.5em;
 }
 
+.dashboard a {
+    color: #f6982d;
+}
+
 footer {
     height: 150px;
     display: flex;
