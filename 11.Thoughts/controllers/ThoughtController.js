@@ -14,6 +14,25 @@ class ThoughtController {
     static createThought(request, response) {
         response.render('thoughts/create')
     }
+
+    static async createThoughtPost(request, response) {
+        const thought = {
+            title: request.body.title,
+            UserId: request.session.userid
+        }
+        
+        try {
+            await Thought.create(thought)
+
+            request.flash('message', 'Pensamento criado com sucesso!')
+
+            request.session.save(() => {
+                response.redirect('/thought/dashboard')
+            })
+        } catch(error) {
+            console.log(error)
+        }
+    }
 }
 
 module.exports = ThoughtController
