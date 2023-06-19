@@ -7,16 +7,22 @@ class ThoughtController {
 
     static async showThoughts(request, response) {
         let search = ''
+        let order = 'DESC'
 
         if (request.query.search) {
             search = request.query.search
+        }
+
+        if (request.query.order === 'old') {
+            order = 'ASC'
         }
 
         const thoughtsData = await Thought.findAll({
             include: User,
             where: {
                 title: {[Op.like]: `%${search}%`}
-            }
+            },
+            order: [['createdAt', order]]
         })
 
         const thoughts = thoughtsData.map((result) => result.get({ plain: true }))
