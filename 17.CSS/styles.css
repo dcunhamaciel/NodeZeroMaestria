@@ -16,3 +16,14 @@ h2 {
     um
     comentário
 */
+
+/* Classes e Ids */
+
+.p-texto {
+    color: lightgreen;
+}
+
+#titulo-app {
+    color: purple;
+    font-size: 40px;
+}
