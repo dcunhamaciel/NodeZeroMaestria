@@ -1,3 +1,18 @@
 h1 {
     color: red;
 }
+
+h2 {
+    color: green;
+    text-align: center;
+    font-size: 50px;
+}
+
+/* Este é um comentário */
+
+/*
+    Este
+    é
+    um
+    comentário
+*/
