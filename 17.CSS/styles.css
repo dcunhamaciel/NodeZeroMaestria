@@ -42,3 +42,15 @@ h2 {
     color: rgba(17, 197, 214, 0.2);
     font-size: 40px;
 }
+
+/* Backgrounds */
+.div-background {
+    background-image: url('por-do-sol.jpg');
+    height: 300px;
+}
+
+.h1-background {
+    text-align: center;
+    background-color: #000;
+    color: #FFF;
+}
