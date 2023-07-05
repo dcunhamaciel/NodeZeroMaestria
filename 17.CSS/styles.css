@@ -54,3 +54,35 @@ h2 {
     background-color: #000;
     color: #FFF;
 }
+
+/* Fontes */
+.family {
+    color: #000;
+    font-size: 40px;
+}
+
+.family.serif {
+    color: green;
+}
+
+.serif {
+    font-family: "times new roman";    
+}
+
+.sans-serif {
+    font-family: arial;
+}
+
+.monospace {
+    font-family: "Courier New";
+}
+
+.italic {
+    font-style: italic;
+}
+
+.oblique {
+    font-style: oblique;
+}
+
+.bold 
