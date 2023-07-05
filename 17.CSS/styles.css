@@ -27,3 +27,18 @@ h2 {
     color: purple;
     font-size: 40px;
 }
+
+/* Cores */
+
+.nome {
+    color: orange;
+}
+
+.hexa {
+    color: #6a40c4;
+}
+
+.rgba {
+    color: rgba(17, 197, 214, 0.2);
+    font-size: 40px;
+}
