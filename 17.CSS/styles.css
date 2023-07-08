@@ -90,13 +90,28 @@ h2 {
 }
 
 /* Box Model */
+body {
+    margin: 0;
+}
+
 .boxmodel {
     width: 200px;
     height: 200px;
     background-color: red;
+    padding: 20px;
+    padding-top: 30px;
+    padding-left: 10px;
+    padding-right: 20px;
+    padding-bottom: 5px;
+    padding: 30px 20px 5px 10px;    
     border: 3px solid blue;
     border-width: 5px 10px 2px 10px;
     border-left: 5px dotted black;
     border-right-style: double;
     border-radius: 15px;
+}
+
+.paragrafo-box {
+    color: #000;
+    margin: 0;
 }
