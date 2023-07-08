@@ -189,8 +189,13 @@ body {
 
 .float-right {
     float: right;
+    color: red;
 }
 
 .p-float {
     color: #000;
+}
+
+.clear {
+    clear: both;
 }
