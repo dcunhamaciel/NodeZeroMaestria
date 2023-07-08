@@ -122,3 +122,15 @@ body {
     color: #000;
     margin: 0;
 }
+
+/* Positions */
+.div-position {
+    width: 500px;
+    height: 500px;
+    background-color: green;
+}
+
+.static {
+    position: static;
+    top: 100px;
+}
