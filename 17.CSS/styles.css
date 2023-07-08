@@ -164,3 +164,9 @@ body {
     bottom: 0;
     right: 0;
 }
+
+.sticky {
+    position: sticky;
+    background-color: deeppink;
+    top: 0px;
+}
