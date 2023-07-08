@@ -156,3 +156,11 @@ body {
     right: 0;
     top: 0;
 }
+
+.fixed {
+    position: fixed;
+    background-color: yellow;
+    height: 100px;
+    bottom: 0;
+    right: 0;
+}
