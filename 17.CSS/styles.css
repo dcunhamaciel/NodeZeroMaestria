@@ -222,3 +222,17 @@ body {
     width: 1em;
     height: 1em;
 }
+
+html {
+    font-size: 20px;
+}
+
+.rem-1 {
+    background-color: blue;
+    width: 1rem;
+    height: 1rem;
+}
+
+.rem-2 {
+    font-size: 2rem;
+}
