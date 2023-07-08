@@ -236,3 +236,21 @@ html {
 .rem-2 {
     font-size: 2rem;
 }
+
+.pai-porcentagem {
+    width: 500px;
+    height: 500px;
+    background-color: #000;
+}
+
+.porcentagem-1 {
+    width: 50%;
+    height: 50%;
+    background-color: yellow;
+}
+
+.porcentagem-2 {
+    width: 50%;
+    height: 50%;
+    background-color: #fff;
+}
