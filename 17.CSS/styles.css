@@ -128,9 +128,17 @@ body {
     width: 500px;
     height: 500px;
     background-color: green;
+    border-bottom: 2px solid;
 }
 
 .static {
     position: static;
     top: 100px;
+}
+
+.relative {
+    position: relative;
+    background-color: blue;
+    top: 100px;
+    left: 50px;
 }
