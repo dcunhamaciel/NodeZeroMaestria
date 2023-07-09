@@ -10,7 +10,63 @@
     <title>WhatsApp Web Clone</title>
 </head>
 <body>
-    <h1>WhatsApp Web</h1>
-    <i class="fas fa-align-center"></i>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="toolbar-container">
+                <img class="user-photo" src="img/avatar1.png">
+                <div class="auxicons-toolbar-container">
+                    <i class="fas fa-spinner"></i>
+                    <i class="fas fa-comment-alt"></i>
+                    <i class="fas fa-ellipsis-v"></i>
+                </div>
+            </div>
+			<div class="notification-container">
+				<i class="fas fa-bell-slash"></i>
+				<p class="receive-notification">Receba notificações de novas mensagens</p>
+				<p class="activate-notification">Ativar notificações na área de trabalho <i class="fas fa-angle-right"></i></p>
+			</div>
+			<div class="search-container">
+				<i id="contact-search" class="fas fa-search"></i>
+				<input type="text" id="search" name="search" placeholder="Procurar ou começar uma nova conversa">
+			</div>
+            <div class="contacts-container">
+				<div class="contact-box active-chat">
+					<img class="user-photo" src="img/avatar2.png">
+					<div class="user-info">
+						<p class="user-name">Sabrina Matos</p>
+						<p class="user-messagepreview"><i class="fas fa-check-double"></i>Oi, tudo bem?</p>
+					</div>
+					<div class="message-info">
+						<p class="message-time">22:40</p>
+					</div>
+				</div>
+				<div class="contact-box">
+					<img class="user-photo" src="img/avatar3.png">
+					<div class="user-info">
+						<p class="user-name">João Augusto</p>
+						<p class="user-messagepreview">Está disponível para um freela?</p>
+					</div>
+					<div class="message-info">
+						<p class="message-time">12:30</p>
+						<p class="message-pending">3</p>
+					</div>
+				</div>
+				<div class="contact-box">
+					<img class="user-photo" src="img/avatar4.png">
+					<div class="user-info">
+						<p class="user-name">Maria Silva</p>
+						<p class="user-messagepreview">O projeto ficou perfeito, obrigada!</p>
+					</div>
+					<div class="message-info">
+						<p class="message-time">08:20</p>
+						<p class="message-pending">5</p>
+					</div>
+				</div>
+            </div>
+        </aside>
+        <main class="chat-container">
+            
+        </main>
+    </div>
 </body>
 </html>
