@@ -1,5 +1,93 @@
 /* general */
-
 html, body, ul {
-    font-family: 'Open Sans', sans-serif;
+	margin: 0;
+	padding: 0;
+	font-family: 'Open Sans', sans-serif;
+}
+
+ul {
+	list-style: none;
+}
+
+.container {
+	height: 100vh;
+	position: relative;
+}
+
+/* side bar */
+.sidebar {
+	width: 410px;
+	height: 100%;
+	display: inline-block;
+	position: relative;
+}
+
+/* toolbar */
+.toolbar-container {
+	width: 100%;
+	height: 60px;
+	background-color: #EEE;
+}
+
+.user-photo {
+	width: 40px;
+	border-radius: 50%;
+	position: absolute;
+	left: 15px;
+	top: 10px;
+	background-color: #CCC;
+}
+
+.auxicons-toolbar-container {
+	float: right;
+	height: 60px;
+	line-height: 60px;
+	padding-right: 20px;
+}
+
+.auxicons-toolbar-container i {
+	color: #80868A;
+	font-size: 20px;
+	margin-left: 15px;
+	margin-right: 15px;
+	cursor: pointer;
+}
+
+/* notification container */
+.notification-container {
+	width: 100%;
+	height: 90px;
+	padding-top: 23px;
+	padding-left: 80px;
+	background-color: #9DE1FE;
+	color: #384c56;
+	position: relative;
+	box-sizing: border-box;
+}
+
+.fas.fa-bell-slash {
+	width: 45px;
+	height: 45px;
+	text-align: center;
+	line-height: 45px;
+	border-radius: 50%;
+	font-size: 18px;
+	color: #9DE1FE;
+	background-color: #F5FCFF;
+	position: absolute;
+	top: 20px;
+	left: 15px;
+}
+
+.notification-container p {
+	margin: 0;
+}
+
+.notification-container .receive-notification {
+	font-size: 15px;
+	margin-bottom: 3px;
+}
+
+.activate-notification {
+	font-size: 13px;
 }
