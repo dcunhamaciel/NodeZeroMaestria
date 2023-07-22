@@ -1,3 +1,7 @@
+const bcrypt = require('bcrypt')
+
+const createUserToken = require('../helpers/create-user-token')
+
 const User = require('../models/User')
 
 class UserController {
@@ -41,7 +45,23 @@ class UserController {
             return
         }
 
-        //
+        const salt = await bcrypt.genSalt(12)
+        const passwordHash = await bcrypt.hash(password, salt)
+
+        const user = new User({
+            name,
+            email,
+            phone,
+            password: passwordHash
+        })
+
+        try {
+            const newUser = await user.save()
+            
+            await createUserToken(newUser, request, response)
+        } catch(error) {
+            response.status(500).json({ message: error })
+        }
     }
 }
 
