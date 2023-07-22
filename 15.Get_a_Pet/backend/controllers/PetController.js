@@ -7,6 +7,8 @@ class PetController {
     static async create(request, response) {
         const { name, age, weight, color } = request.body
 
+        const images = request.files
+
         const available = true
 
         if (!name) {
@@ -29,6 +31,11 @@ class PetController {
             return
         }
 
+        if (!images || images.length == 0) {
+            response.status(422).json({ message: 'A imagem é obrigatória!' })
+            return
+        }
+
         const token = await getToken(request)
         const user = await getUserByToken(token)
 
@@ -45,6 +52,10 @@ class PetController {
                 image: user.image,
                 phone: user.phone
             }
+        })
+
+        images.map((image) => {
+            pet.images.push(image.filename)
         })
 
         try {
