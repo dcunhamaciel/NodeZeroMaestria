@@ -124,6 +124,10 @@ class UserController {
 
         response.status(200).json({ user })
     }
+
+    static async editUser(request, response) {
+        response.status(400).json({ message: 'chegou aqui' })
+    } 
 }
 
 module.exports = UserController
