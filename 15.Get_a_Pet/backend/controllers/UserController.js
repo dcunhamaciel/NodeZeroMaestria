@@ -159,7 +159,7 @@ class UserController {
         if (password !== confirmpassword) {
             response.status(422).json({ message: 'As senhas não conferem!' })
             return            
-        }
+        }  
 
         const token = await getToken(request)
         const user = await getUserByToken(token)
@@ -191,6 +191,11 @@ class UserController {
                 
                 user.password = passwordHash
             }
+        }
+
+        if (request.file) {            
+            user.image = request.file.filename
+            console.log(user.image)
         }
 
         try {
