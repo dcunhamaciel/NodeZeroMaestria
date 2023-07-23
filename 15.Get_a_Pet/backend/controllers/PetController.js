@@ -112,6 +112,34 @@ class PetController {
 
         response.json({ message: 'chegou no pet!' })
     }
+
+    static async removePetById(request, response) {
+        const id = request.params.id
+
+        if (!ObjectId.isValid(id)) {
+            response.status(422).json({ message: 'Id inválido!' })
+            return
+        }
+
+        const pet = await Pet.findOne({ _id: id })
+
+        if (!pet) {
+            response.status(404).json({ message: 'Pet não encontrado!' })
+            return
+        }
+
+        const token = await getToken(request)
+        const user = await getUserByToken(token)
+
+        if (pet.user._id.toString() !== user._id.toString()) {
+            response.status(404).json({ message: 'Pet não pertencente ao usuário!' })
+            return
+        }
+
+        await Pet.findByIdAndRemove(id)
+
+        response.status(200).json({ message: 'Pet removido com sucesso!' })
+    }    
 }
 
 module.exports = PetController
