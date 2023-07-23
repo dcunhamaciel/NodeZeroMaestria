@@ -113,6 +113,73 @@ class PetController {
         response.json({ message: 'chegou no pet!' })
     }
 
+    static async updatePetById(request, response) {
+        const id = request.params.id
+
+        const { name, age, weight, color, available } = request.body
+
+        const images = request.files
+
+        const updatedPet = {}
+
+        if (!ObjectId.isValid(id)) {
+            response.status(422).json({ message: 'Id inválido!' })
+            return
+        }
+
+        if (!name) {
+            response.status(422).json({ message: 'O nome é obrigatório!' })
+            return
+        }
+
+        if (!age) {
+            response.status(422).json({ message: 'A idade é obrigatória!' })
+            return
+        }
+
+        if (!weight) {
+            response.status(422).json({ message: 'O peso é obrigatório!' })
+            return
+        }
+
+        if (!color) {
+            response.status(422).json({ message: 'A cor é obrigatória!' })
+            return
+        }
+
+        updatedPet.name = name
+        updatedPet.age = age
+        updatedPet.weight = weight
+        updatedPet.color = color
+
+        if (images || images.length > 0) {
+            updatedPet.images = []
+
+            images.map((image) => {
+                updatedPet.images.push(image.filename)
+            })            
+        }
+
+        const pet = await Pet.findOne({ _id: id })
+
+        if (!pet) {
+            response.status(404).json({ message: 'Pet não encontrado!' })
+            return
+        }
+
+        const token = await getToken(request)
+        const user = await getUserByToken(token)
+
+        if (pet.user._id.toString() !== user._id.toString()) {
+            response.status(404).json({ message: 'Pet não pertencente ao usuário!' })
+            return
+        }
+
+        await Pet.findByIdAndUpdate(id, updatedPet)
+
+        response.status(200).json({ message: 'Pet atualizado com sucesso!' })
+    }
+
     static async removePetById(request, response) {
         const id = request.params.id
 
