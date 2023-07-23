@@ -5,6 +5,12 @@ const Pet = require('../models/Pet')
 
 class PetController {
     static async getAll(request, response) {
+        const pets = await Pet.find().sort('-createdAt')
+
+        response.status(200).json({ pets })
+    }
+
+    static async getAllUserPets(request, response) {
         const token = await getToken(request)
         const user = await getUserByToken(token)
         
@@ -13,10 +19,13 @@ class PetController {
         response.status(200).json({ pets })
     }
 
-    static async getAllUserPets(request, response) {
-        const pets = await Pet.find().sort('-createdAt')
+    static async getAllUserAdoptions(request, response) {
+        const token = await getToken(request)
+        const user = await getUserByToken(token)
+        
+        const pets = await Pet.find({ 'adopter._id': user._id }).sort('-createdAt')
 
-        response.status(200).json({ pets })
+        response.status(200).json({ pets })        
     }
 
     static async create(request, response) {
