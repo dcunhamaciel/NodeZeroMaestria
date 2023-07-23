@@ -1,3 +1,5 @@
+const ObjectId = require('mongoose').Types.ObjectId
+
 const getToken = require('../helpers/get-token')
 const getUserByToken = require('../helpers/get-user-by-token')
 
@@ -9,6 +11,24 @@ class PetController {
 
         response.status(200).json({ pets })
     }
+
+    static async getPetById(request, response) {
+        const id = request.params.id
+
+        if (!ObjectId.isValid(id)) {
+            response.status(422).json({ message: 'Id inválido!' })
+            return
+        }
+
+        const pet = await Pet.findOne({ _id: id })
+
+        if (!pet) {
+            response.status(404).json({ message: 'Pet não encontrado!' })
+            return
+        }
+
+        response.status(200).json({ pet })
+    }    
 
     static async getAllUserPets(request, response) {
         const token = await getToken(request)
