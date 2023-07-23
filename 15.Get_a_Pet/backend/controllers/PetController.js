@@ -116,7 +116,7 @@ class PetController {
     static async updatePetById(request, response) {
         const id = request.params.id
 
-        const { name, age, weight, color, available } = request.body
+        const { name, age, weight, color } = request.body
 
         const images = request.files
 
@@ -206,7 +206,53 @@ class PetController {
         await Pet.findByIdAndRemove(id)
 
         response.status(200).json({ message: 'Pet removido com sucesso!' })
-    }    
+    }
+    
+    static async schedule(request, response) {
+        const id = request.params.id
+
+        if (!ObjectId.isValid(id)) {
+            response.status(422).json({ message: 'Id inválido!' })
+            return
+        }
+
+        const pet = await Pet.findOne({ _id: id })
+
+        if (!pet) {
+            response.status(404).json({ message: 'Pet não encontrado!' })
+            return
+        }
+
+        if (!pet.available) {
+            response.status(404).json({ message: 'Pet não disponível!' })
+            return
+        }
+
+        const token = await getToken(request)
+        const user = await getUserByToken(token)
+
+        if (pet.user._id.equals(user._id)) {
+            response.status(404).json({ message: 'Não é possível agendar o próprio Pet!' })
+            return
+        }
+
+        if (pet.adopter) {
+            if (pet.adopter._id.str === user._id.str) {
+                response.status(404).json({ message: 'Você já agendou uma visita para esse Pet!' })
+                return
+            }
+        }
+
+        pet.adopter = {
+            _id: user.id,
+            name: user.name,
+            image: user.image
+        }
+
+        await Pet.findByIdAndUpdate(id, pet)
+
+        response.status(200).json({ message: `A visita foi agendada com sucesso! Entre em contato com ${pet.user.name}.` })
+    }
 }
 
 module.exports = PetController
