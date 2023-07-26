@@ -1,8 +1,25 @@
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+
+/* pages */
+import Home from './components/pages/Home'
+import Login from './components/pages/Auth/Login'
+import Register from './components/pages/Auth/Register'
+
 function App() {
   return (
-    <div className="App">
-      <h1>Get a Pet</h1>      
-    </div>
+    <Router>
+        <Switch>
+            <Route path="/login">
+                <Login/>
+            </Route>
+            <Route path="/register">
+                <Register/>
+            </Route>
+            <Route path="/">
+                <Home/>
+            </Route>            
+        </Switch>
+    </Router>
   );
 }
 
